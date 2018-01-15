@@ -114,3 +114,5 @@ dist/
 dist_test/
 node_modules/
 package-lock.json
+
+# *.js.map
