@@ -118,7 +118,5 @@ package-lock.json
 
 *.js.map
 
-src/main.js
-src/vendor.js
-src/pollyfills.js
+src/*.js
 src/app/*.js
