@@ -115,4 +115,10 @@ dist_test/
 node_modules/
 package-lock.json
 
-# *.js.map
+
+*.js.map
+
+src/main.js
+src/vendor.js
+src/pollyfills.js
+src/app/*.js
