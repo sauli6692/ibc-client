@@ -37,7 +37,7 @@ module.exports = {
                 loader: 'file-loader?name=assets/[name].[hash].[ext]'
             },
             {
-                test: /\.less$/,
+                test: /\.(less|css)$/,
                 use: extractLess.extract({
                     // use style-loader in development
                     fallback: 'style-loader',
@@ -50,7 +50,7 @@ module.exports = {
                 exclude: helpers.root('src', 'app')
             },
             {
-                test: /\.less$/,
+                test: /\.(less|css)$/,
                 use: extractLess.extract({
                     fallback: 'raw-loader',
                     use: [{
