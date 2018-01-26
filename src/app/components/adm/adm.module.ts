@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { SuiModule } from 'ng2-semantic-ui';
 
-import { AppComponent } from './app.component';
+import { AdmComponent } from './adm.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     SuiModule
   ],
   declarations: [
-    AppComponent
+      AdmComponent
   ],
-  bootstrap: [ AppComponent ]
+  exports: [ AdmComponent ]
 })
-export class AppModule { }
+export class AdmModule { }

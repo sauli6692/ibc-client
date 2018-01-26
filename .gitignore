@@ -119,4 +119,4 @@ package-lock.json
 *.js.map
 
 src/*.js
-src/app/*.js
+src/app/**/*.js

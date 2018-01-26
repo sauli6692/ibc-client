@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-import '../assets/styles/styles.less';
-import '../assets/styles/semantic/semantic.min.css';
-
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styles: ['./app.component.less']
+  selector: 'min-component',
+  templateUrl: './min.component.html',
+  styles: ['./min.component.less']
 })
-export class AppComponent { }
+export class MinComponent { }

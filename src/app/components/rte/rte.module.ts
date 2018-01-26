@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { SuiModule } from 'ng2-semantic-ui';
 
-import { AppComponent } from './app.component';
+import { RteComponent } from './rte.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     SuiModule
   ],
   declarations: [
-    AppComponent
+      RteComponent
   ],
-  bootstrap: [ AppComponent ]
+  exports: [ RteComponent ]
 })
-export class AppModule { }
+export class RteModule { }

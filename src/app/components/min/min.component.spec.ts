@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
+import { MinComponent } from './min.component';
 
-describe('App', () => {
+describe('Min', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ declarations: [AppComponent]});
+    TestBed.configureTestingModule({ declarations: [MinComponent]});
   });
 
   it ('should work', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
+    let fixture = TestBed.createComponent(MinComponent);
+    expect(fixture.componentInstance instanceof MinComponent).toBe(true, 'should create MinComponent');
   });
 });

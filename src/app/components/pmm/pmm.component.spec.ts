@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
+import { PmmComponent } from './pmm.component';
 
-describe('App', () => {
+describe('Pmm', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ declarations: [AppComponent]});
+    TestBed.configureTestingModule({ declarations: [PmmComponent]});
   });
 
   it ('should work', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
+    let fixture = TestBed.createComponent(PmmComponent);
+    expect(fixture.componentInstance instanceof PmmComponent).toBe(true, 'should create PmmComponent');
   });
 });

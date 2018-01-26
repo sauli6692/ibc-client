@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
+import { AdmComponent } from './adm.component';
 
-describe('App', () => {
+describe('Adm', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ declarations: [AppComponent]});
+    TestBed.configureTestingModule({ declarations: [AdmComponent]});
   });
 
   it ('should work', () => {
-    let fixture = TestBed.createComponent(AppComponent);
-    expect(fixture.componentInstance instanceof AppComponent).toBe(true, 'should create AppComponent');
+    let fixture = TestBed.createComponent(AdmComponent);
+    expect(fixture.componentInstance instanceof AdmComponent).toBe(true, 'should create AdmComponent');
   });
 });

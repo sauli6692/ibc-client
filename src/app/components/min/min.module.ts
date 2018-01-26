@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { SuiModule } from 'ng2-semantic-ui';
 
-import { AppComponent } from './app.component';
+import { MinComponent } from './min.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     SuiModule
   ],
   declarations: [
-    AppComponent
+      MinComponent
   ],
-  bootstrap: [ AppComponent ]
+  exports: [ MinComponent ]
 })
-export class AppModule { }
+export class MinModule { }
