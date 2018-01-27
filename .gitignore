@@ -120,3 +120,4 @@ package-lock.json
 
 src/*.js
 src/app/**/*.js
+src/environment/**/*.js
