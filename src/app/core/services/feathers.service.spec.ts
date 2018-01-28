@@ -10,8 +10,6 @@ describe('FeathersService', () => {
     });
 
     it('should ...', inject([Feathers], (service: Feathers) => {
-        console.log(service);
-        expect(false).toBeTruthy();
         expect(service).toBeTruthy();
     }));
 });

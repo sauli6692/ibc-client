@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SuiModule } from 'ng2-semantic-ui';
 
-import { CoreComponent } from './core.component';
+import { CoreComponent } from './components';
 
 import { AuthGuard } from './guards/auth.guard';
 import { Feathers } from './services/feathers.service';
