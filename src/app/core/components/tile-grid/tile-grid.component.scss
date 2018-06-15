@@ -1,0 +1,20 @@
+$label-margin: 15px;
+
+.tile-grid {
+    .cards {
+        .card {
+            &.no-background {
+                background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+            }
+            .label {
+                position: absolute;
+                bottom: $label-margin;
+                left: $label-margin;
+                * {
+                    color: white;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
