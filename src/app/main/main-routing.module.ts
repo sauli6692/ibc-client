@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from '../auth/services';
+
 import { MainComponent } from './components/main/main.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -11,6 +13,7 @@ const appRoutes: Routes = [
         component: MainComponent,
         children: [
             { path: 'home', component: HomeComponent },
+            { path: 'adm', component: HomeComponent },
             {
                 path: '',
                 redirectTo: '/home',
@@ -22,13 +25,9 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(
-            appRoutes
-        )
+        RouterModule.forChild(appRoutes)
     ],
-    exports: [
-        RouterModule
-    ],
+    exports: [RouterModule],
     providers: []
 })
 export class MainRoutingModule { }

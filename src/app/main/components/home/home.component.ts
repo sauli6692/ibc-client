@@ -12,7 +12,7 @@ export class HomeComponent {
         {
             title: 'Personas',
             description: 'Description de las personas',
-            background: '/assets/images/debian-1.png',
+            background: '/assets/images/debian_1.png',
             routerLink: ['/home']
         },
         {

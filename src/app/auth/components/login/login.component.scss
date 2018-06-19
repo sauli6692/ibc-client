@@ -1,0 +1,14 @@
+.grid {
+    height: 100%;
+    background-color: rgb(249, 249, 255);
+    .column {
+        max-width: 500px;
+    }
+    .ui.stacked.segment {
+        padding-top: 2.4em;
+        padding-bottom: 2.4em;
+    }
+}
+.image {
+    margin-top: -100px;
+}

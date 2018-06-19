@@ -2,10 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { NotFoundComponent } from './main/components/not-found/not-found.component';
+import { AuthGuard } from './auth/services';
 
 
 const appRoutes: Routes = [
-    { path: '', loadChildren: './main/main.module#MainModule' },
+    {
+        path: '',
+        loadChildren: './main/main.module#MainModule',
+        canLoad: [AuthGuard]
+    },
     { path: '**', component: NotFoundComponent }
 ];
 
@@ -14,7 +19,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(
             appRoutes,
             {
-                enableTracing: true, // <-- debugging purposes only
+                enableTracing: false, // <-- true debugging purposes only
             }
         )
     ],

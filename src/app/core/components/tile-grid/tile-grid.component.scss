@@ -3,8 +3,15 @@ $label-margin: 15px;
 .tile-grid {
     .cards {
         .card {
-            &.no-background {
-                background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+            height: 200px;
+            background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+            .image-helper {
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
+            }
+            img {
+                vertical-align: middle;
             }
             .label {
                 position: absolute;
