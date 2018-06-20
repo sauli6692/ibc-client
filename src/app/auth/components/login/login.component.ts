@@ -20,7 +20,7 @@ export class LoginComponent {
     constructor(private authService: AuthService, private router: Router) { }
 
     onSubmit() {
-        this.authService.login('admin', 'admin')
+        this.authService.login('sauli6692', 'qwerty123')
             .subscribe(isLogged => {
                 if (isLogged) {
                     this.router.navigate([this.authService.next || '/']);

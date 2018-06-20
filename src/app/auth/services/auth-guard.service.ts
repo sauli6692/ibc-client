@@ -7,28 +7,30 @@ import {
     NavigationExtras,
     CanLoad, Route
 } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     constructor(private authService: AuthService, private router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.checkLogin(state.url);
     }
 
-    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
         return this.canActivate(route, state);
     }
 
-    canLoad(route: Route): boolean {
+    canLoad(route: Route): Observable<boolean> | boolean {
         const url = `/${route.path}`;
 
         return this.checkLogin(url);
     }
 
-    checkLogin(url: string): boolean {
-        const isAuthenticated = this.authService.isAuthenticated();
+    checkLogin(url: string): Observable<boolean> | boolean {
+        const isAuthenticated = this.authService.isAuthenticated() && this.authService.isAuthorized(url);
 
         if (!isAuthenticated && url !== '/login') {
             this.authService.next = url;
@@ -36,7 +38,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         } else if (isAuthenticated && url === '/login') {
             this.authService.next = '/';
             this.router.navigate([this.authService.next]);
-        } else {
+        } else if (url === '/login') {
             return true;
         }
 
