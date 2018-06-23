@@ -8,6 +8,7 @@ import {
     CanLoad, Route
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 
@@ -30,18 +31,22 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     checkLogin(url: string): Observable<boolean> | boolean {
-        const isAuthenticated = this.authService.isAuthenticated() && this.authService.isAuthorized(url);
-
-        if (!isAuthenticated && url !== '/login') {
+        if (!this.authService.isAuthenticated()) {
             this.authService.next = url;
             this.router.navigate(['/login']);
-        } else if (isAuthenticated && url === '/login') {
-            this.authService.next = '/';
-            this.router.navigate([this.authService.next]);
-        } else if (url === '/login') {
-            return true;
+            return false;
         }
 
-        return isAuthenticated;
+        const isAuthorized = this.authService.isAuthorized(url);
+        if (isAuthorized instanceof Observable) {
+            return isAuthorized.pipe(map(response => {
+                if (!response) {
+                    this.router.navigate(['/forbidden']);
+                }
+                return response;
+            }));
+        }
+
+        return isAuthorized;
     }
 }

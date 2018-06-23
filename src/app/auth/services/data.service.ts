@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
@@ -19,6 +19,11 @@ export class AuthDataService extends AbstractDataService {
     }
 
     getURLRoles(url: string): Observable<number[]> {
-        return of([]);
+        const options = new RequestOptions();
+        options.params = new URLSearchParams();
+        options.params.append('slug', url);
+
+        return this.get('ui-routes', options)
+            .pipe(map(response => response.json()));
     }
 }

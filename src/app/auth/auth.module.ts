@@ -7,6 +7,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { AuthService, AuthGuard, AuthDataService } from './services';
 
 export function tokenGetter() {
@@ -27,7 +28,10 @@ export function tokenGetter() {
         }),
         AuthRoutingModule,
     ],
-    declarations: [LoginComponent],
+    declarations: [
+        LoginComponent,
+        ForbiddenComponent
+    ],
     providers: [
         AuthGuard,
         AuthService,

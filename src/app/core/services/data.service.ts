@@ -16,6 +16,10 @@ export class AbstractDataService {
         return this.http.post(this.fullUrl(url), body, options);
     }
 
+    protected get(url: string, options?: RequestOptions): Observable<Response> {
+        return this.http.get(this.fullUrl(url), options);
+    }
+
     private fullUrl(url: string) {
         return `${this.baseUrl}/${url}/`;
     }
