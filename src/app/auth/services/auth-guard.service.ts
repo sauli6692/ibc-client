@@ -31,10 +31,15 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     checkLogin(url: string): Observable<boolean> | boolean {
-        if (!this.authService.isAuthenticated()) {
+        if (!this.authService.isAuthenticated() && url !== '/login') {
             this.authService.next = url;
             this.router.navigate(['/login']);
             return false;
+        } else if (this.authService.isAuthenticated() && url === '/login') {
+            this.router.navigate(['/']);
+            return false;
+        } else if (url === '/login') {
+            return true;
         }
 
         const isAuthorized = this.authService.isAuthorized(url);

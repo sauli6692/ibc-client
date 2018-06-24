@@ -12,7 +12,11 @@ const appRoutes: Routes = [
         path: '',
         component: MainComponent,
         children: [
-            { path: 'home', component: HomeComponent },
+            {
+                path: 'home',
+                component: HomeComponent,
+                canActivate: [AuthGuard]
+            },
             { path: 'adm', component: HomeComponent },
             {
                 path: '',

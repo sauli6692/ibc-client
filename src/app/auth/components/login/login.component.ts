@@ -10,19 +10,13 @@ import { AuthService } from '../../services';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     title = 'Iglesia Bautista El Calvario';
     loginLabel = 'Ingresar';
     passwordLabel = 'Contraseña';
     userLabel = 'Usuario';
 
     constructor(private authService: AuthService, private router: Router) { }
-
-    ngOnInit() {
-        if (this.authService.isAuthenticated()) {
-            this.router.navigate(['/']);
-        }
-    }
 
     onSubmit() {
         this.authService.login('sauli6692', 'qwerty123')
