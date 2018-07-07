@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 import { AbstractDataService } from '../../core/services';
+import { RouteMetadata } from '../../core/interfaces';
 
 @Injectable()
 export class AuthDataService extends AbstractDataService {
@@ -18,11 +19,10 @@ export class AuthDataService extends AbstractDataService {
         return this.post('login', data).pipe(map(response => response.json().token));
     }
 
-    getURLRoles(url: string): Observable<number[]> {
+    getRouteMetadata(url: string): Observable<RouteMetadata> {
         const options = new RequestOptions();
         options.params = new URLSearchParams();
         options.params.append('slug', url);
-
         return this.get('ui-routes', options)
             .pipe(map(response => response.json()));
     }

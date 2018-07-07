@@ -41,15 +41,11 @@ export class AuthService {
         return !this.jwtHelper.isTokenExpired();
     }
 
-    isAuthorized(url: string): Observable<boolean> | boolean {
+    isAuthorized(roles: Array<number>): boolean {
         if (!this.activeUser) { return false; }
 
         if (this.activeUser.isSuperuser) { return true; }
 
-        return this.dataService.getURLRoles(url)
-            .pipe(map(allowedRoles =>
-                _.isEmpty(allowedRoles)
-                || !_.isEmpty(_.intersection(this.activeUser.roles, allowedRoles))
-            ));
+        return _.isEmpty(roles) || !_.isEmpty(_.intersection(this.activeUser.roles, roles));
     }
 }

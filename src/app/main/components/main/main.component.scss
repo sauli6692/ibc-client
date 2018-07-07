@@ -1,4 +1,26 @@
 $main-margin: 4em;
+
+.ui.vertical.menu {
+    .item > .header:not(.ui) {
+        font-size: 1.08em;
+
+        .ui.logo.icon.image {
+            max-width: 40px;
+            margin-right: 5px;
+        }
+
+        a {
+            color: white;
+        }
+    }
+
+    .menu {
+        a.item {
+            font-size: 1em;
+        }
+    }
+}
+
 .ui.main {
     margin-top: $main-margin;
     margin-left: $main-margin!important;

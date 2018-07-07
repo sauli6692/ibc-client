@@ -7,17 +7,26 @@ import {
     NavigationExtras,
     CanLoad, Route
 } from '@angular/router';
+
+import * as _ from 'lodash';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
+import { AuthDataService } from './data.service';
+import { RouteInformation } from '../../core/services';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private dataService: AuthDataService,
+        private routeInfo: RouteInformation
+    ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-        return this.checkLogin(state.url);
+        return this.checkRouteInformation(state.url);
     }
 
     canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
@@ -27,10 +36,36 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     canLoad(route: Route): Observable<boolean> | boolean {
         const url = `/${route.path}`;
 
-        return this.checkLogin(url);
+        return this.checkRouteInformation(url);
     }
 
-    checkLogin(url: string): Observable<boolean> | boolean {
+    checkRouteInformation(url: string): Observable<boolean> | boolean {
+        url = url === '/' ? '/home' : url;
+
+        const isAuthenticated = this.checkAuthentication(url);
+
+        if (_.isBoolean(isAuthenticated)) {
+            return isAuthenticated;
+        }
+
+        return this.dataService.getRouteMetadata(url)
+            .pipe(map(routeData => {
+                const isAuthorized = this.authService.isAuthorized(routeData.roles);
+
+                if (isAuthorized) {
+                    this.routeInfo.currentMenu = routeData.menu;
+                    if (url === '/home') {
+                        this.routeInfo.globalMenu = routeData.menu;
+                    }
+                } else {
+                    this.router.navigate(['/forbidden']);
+                }
+
+                return isAuthorized;
+            }));
+    }
+
+    private checkAuthentication(url: string): boolean {
         if (!this.authService.isAuthenticated() && url !== '/login') {
             this.authService.next = url;
             this.router.navigate(['/login']);
@@ -41,17 +76,5 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         } else if (url === '/login') {
             return true;
         }
-
-        const isAuthorized = this.authService.isAuthorized(url);
-        if (isAuthorized instanceof Observable) {
-            return isAuthorized.pipe(map(response => {
-                if (!response) {
-                    this.router.navigate(['/forbidden']);
-                }
-                return response;
-            }));
-        }
-
-        return isAuthorized;
     }
 }

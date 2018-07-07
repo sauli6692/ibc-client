@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
-import { CoreTile } from '../../../core/interfaces';
+import * as _ from 'lodash';
+
+import { RouteInformation } from '../../../core/services';
 
 
 @Component({
@@ -9,18 +11,8 @@ import { CoreTile } from '../../../core/interfaces';
     styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-    tiles: CoreTile[] = [
-        {
-            title: 'Personas',
-            description: 'Description de las personas',
-            background: '/assets/images/debian-1.png',
-            routerLink: ['/adm']
-        },
-        {
-            title: 'Personas',
-            externalLink: 'https://github.com/'
-        }
-    ];
-
-    constructor() { }
+    title = 'Iglesia Bautista El Calvario';
+    constructor(
+        private routeInfo: RouteInformation
+    ) { }
 }
