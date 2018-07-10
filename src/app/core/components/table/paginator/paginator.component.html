@@ -1,0 +1,31 @@
+<div class="ui secondary menu">
+    <div class="item">
+        {{dataTable.translations.paginationRange}}:
+         <span>{{dataTable.offset + 1}}</span> -
+        <span>{{[dataTable.offset + dataTable.limit, dataTable.itemCount] | min}}</span> /
+        <span>{{dataTable.itemCount}}</span>
+    </div>
+    <div class="item">
+        <span>{{dataTable.translations.paginationLimit}}:&nbsp;</span>
+        <sui-select
+            class="compact selection"
+            [(ngModel)]="limit"
+            [options]="limitOptions"
+            #select>
+            <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+            </sui-select-option>
+        </sui-select>
+    </div>
+
+    <div class="ui right pagination menu">
+        <a class="icon item" [class.disabled]="dataTable.offset <= 0" (click)="prevValid && pageFirst()"><i class="angle double left icon"></i></a>
+        <a class="icon item" [class.disabled]="dataTable.offset <= 0" (click)="prevValid && pageBack()"><i class="angle left icon"></i></a>
+        <div class="item input">
+            <div class="ui input">
+                <input #pageInput type="number" min="1" step="1" max="{{maxPage}}" [ngModel]="page" (blur)="goto(pageInput)" (keyup.enter)="goto(pageInput)" (keyup.esc)="pageInput.value = page"/>
+            </div>
+        </div>
+        <a class="icon item" [class.disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" (click)="nextValid && pageForward()"><i class="angle right icon"></i></a>
+        <a class="icon item" [class.disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" (click)="nextValid && pageLast()"><i class="angle double right icon"></i></a>
+    </div>
+</div>

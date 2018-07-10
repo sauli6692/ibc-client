@@ -1,2 +1,4 @@
 export * from './tile.interface';
-export * from './route-metadata';
+export * from './table.interface';
+export * from './route-metadata.interface';
+export * from './types';
