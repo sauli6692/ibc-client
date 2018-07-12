@@ -176,7 +176,9 @@ export class TableComponent implements DataTableParams, OnInit {
 
     reloadItems() {
         this._reloading = true;
-        this.reload.emit(this._getRemoteParameters());
+        setTimeout(() => {
+            this.reload.emit(this._getRemoteParameters());
+        }, 0);
     }
 
     private _onReloadFinished() {
