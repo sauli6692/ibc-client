@@ -88,8 +88,16 @@ export class HomeComponent implements OnInit {
     }
 
     reloadItems(params) {
-        this.items = this._items.slice(params.offset, params.offset + params.limit);
-        this.itemCount = this._items.length;
+        let items;
+        if (params.search) {
+            items = this._items.filter(
+                item => _.toLower(item.name).indexOf(_.toLower(params.search)) > -1
+            );
+        } else {
+            items = this._items;
+        }
+        this.items = items.slice(params.offset, params.offset + params.limit);
+        this.itemCount = items.length;
     }
 
     rowClick(rowEvent) {

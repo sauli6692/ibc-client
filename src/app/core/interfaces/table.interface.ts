@@ -18,6 +18,7 @@ export interface DataTableParams {
     limit?: number;
     sortBy?: string;
     sortAsc?: boolean;
+    search?: string;
 }
 
 export const defaultTranslations = <DataTableTranslations>{
@@ -25,5 +26,6 @@ export const defaultTranslations = <DataTableTranslations>{
     selectColumn: 'select',
     expandColumn: 'expand',
     paginationLimit: 'Limit',
-    paginationRange: 'Results'
+    paginationRange: 'Results',
+    search: 'Search...'
 };

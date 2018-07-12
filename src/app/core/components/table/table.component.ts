@@ -31,6 +31,7 @@ export class TableComponent implements DataTableParams, OnInit {
     private _sortAsc = true;
     private _offset = 0;
     private _limit = 10;
+    private _search = '';
     private _reloading = false;
     private _displayParams = <DataTableParams>{};
     private _scheduledReload = null;
@@ -103,6 +104,15 @@ export class TableComponent implements DataTableParams, OnInit {
     set limit(value) {
         this._limit = value;
         this._triggerReload();
+    }
+
+    get search() { return this._search; }
+
+    set search(value) {
+        if (this._search !== value) {
+            this._search = value;
+            this._triggerReload();
+        }
     }
 
     @Input()
@@ -227,8 +237,6 @@ export class TableComponent implements DataTableParams, OnInit {
         this.cellClick.emit({ row, column, event });
     }
 
-    // functions:
-
     private _getRemoteParameters(): DataTableParams {
         const params = <DataTableParams>{};
 
@@ -239,6 +247,9 @@ export class TableComponent implements DataTableParams, OnInit {
         if (this.pagination) {
             params.offset = this.offset;
             params.limit = this.limit;
+        }
+        if (this.search) {
+            params.search = this.search;
         }
         return params;
     }

@@ -1,4 +1,4 @@
-import { Component, Inject, forwardRef, HostListener } from '@angular/core';
+import { Component, Inject, forwardRef } from '@angular/core';
 import { TableComponent } from '../table.component';
 
 @Component({
@@ -7,11 +7,11 @@ import { TableComponent } from '../table.component';
   styleUrls: ['./header.component.scss']
 })
 export class TableHeaderComponent {
-    columnSelectorOpen = false;
+    constructor(
+      @Inject(forwardRef(() => TableComponent)) public dataTable: TableComponent
+    ) {}
 
-    constructor(@Inject(forwardRef(() => TableComponent)) public dataTable: TableComponent) {}
-
-    @HostListener('document:click') _closeSelector() {
-        this.columnSelectorOpen = false;
+    search(value: string) {
+        setTimeout(() => this.dataTable.search = value, 300);
     }
 }
