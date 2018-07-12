@@ -8,13 +8,16 @@
     (dblclick)="dataTable.rowDoubleClicked(_this, $event)"
     (click)="dataTable.rowClicked(_this, $event)"
     >
-    <td [hide]="!dataTable.expandColumnVisible" (click)="expanded = !expanded; $event.stopPropagation()" class="row-expand-button">
-        <span class="glyphicon glyphicon-triangle-right" [hide]="expanded"></span>
-        <span class="glyphicon glyphicon-triangle-bottom" [hide]="!expanded"></span>
+    <td [hide]="!dataTable.expandColumnVisible" (click)="expanded = !expanded; $event.stopPropagation()">
+        <i class="caret right icon" [hide]="expanded"></i>
+        <i class="caret down icon" [hide]="!expanded"></i>
     </td>
     <td [hide]="!dataTable.indexColumnVisible" class="index-column" [textContent]="displayIndex"></td>
     <td [hide]="!dataTable.selectColumnVisible" class="select-column">
-        <input type="checkbox" [(ngModel)]="selected"/>
+        <div class="ui checkbox">
+            <input [name]="'select_' + index" type="checkbox" [(ngModel)]="selected">
+            <label></label>
+        </div>
     </td>
     <td *ngFor="let column of dataTable.columns" [hide]="!column.visible" [ngClass]="column.styleClassObject" class="data-column"
         [style.background-color]="column.getCellColor(_this, index)">

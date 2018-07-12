@@ -1,5 +1,19 @@
 <!-- <core-tile-grid [tiles]="tiles"></core-tile-grid> -->
-<core-table headerTitle="Employees" [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)" (rowClick)="rowClick($event)" (rowDoubleClick)="rowDoubleClick($event)" [rowTooltip]="rowTooltip">
+<core-table
+    headerTitle="Employees"
+    [items]="items"
+    [itemCount]="itemCount"
+    [showReloading]="true"
+    [rowTooltip]="rowTooltip"
+    [selectColumn]="true"
+    [expandableRows]="true"
+    (reload)="reloadItems($event)"
+    (rowClick)="rowClick($event)"
+    (rowDoubleClick)="rowDoubleClick($event)"
+>
+    <ng-template #dataTableExpand let-item="item">
+        <div [textContent]="item.name + ' - '+ item.jobTitle" style="padding: 5px; color: gray"></div>
+    </ng-template>
     <core-table-column [property]="'name'" [header]="'Name'" [sortable]="true" [resizable]="true">
     </core-table-column>
     <core-table-column [property]="'date'" [header]="'Date'" [sortable]="true">
