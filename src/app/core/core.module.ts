@@ -5,11 +5,13 @@ import { SuiModule } from 'ng2-semantic-ui';
 import { RouterModule } from '@angular/router';
 
 import { TileGridComponent } from './components/tile-grid/tile-grid.component';
+// Table Components
 import { TableComponent } from './components/table/table.component';
 import { TableColumnDirective } from './components/table/column.directive';
 import { TableRowComponent } from './components/table/row/row.component';
 import { TableHeaderComponent } from './components/table/header/header.component';
 import { TablePaginatorComponent } from './components/table/paginator/paginator.component';
+import { TableUseExampleComponent } from './components/table/use-example/use-example.component';
 
 import { HideDirective } from './directives/hide.directive';
 
@@ -30,6 +32,7 @@ import { PixelConverterPipe } from './pipes/px.pipe';
         TableRowComponent,
         TableHeaderComponent,
         TablePaginatorComponent,
+        TableUseExampleComponent,
         // Directives
         HideDirective,
         // Pipes
@@ -39,8 +42,9 @@ import { PixelConverterPipe } from './pipes/px.pipe';
     exports: [
         TileGridComponent,
         TableComponent,
-        TableColumnDirective,
+        TableUseExampleComponent,
         // Directives
+        TableColumnDirective,
         HideDirective,
         // Pipes
         MinPipe,

@@ -16,7 +16,7 @@ export interface DataTableTranslations {
 export interface DataTableParams {
     offset?: number;
     limit?: number;
-    sortBy?: string;
+    ordering?: string;
     sortAsc?: boolean;
     search?: string;
 }

@@ -27,7 +27,7 @@ export class TableComponent implements DataTableParams, OnInit {
     resizeLimit = 30;
 
     private _items: any[] = [];
-    private _sortBy: string;
+    private _ordering: string;
     private _sortAsc = true;
     private _offset = 0;
     private _limit = 10;
@@ -75,10 +75,10 @@ export class TableComponent implements DataTableParams, OnInit {
     }
 
     @Input()
-    get sortBy() { return this._sortBy; }
+    get ordering() { return this._ordering; }
 
-    set sortBy(value) {
-        this._sortBy = value;
+    set ordering(value) {
+        this._ordering = value;
         this._triggerReload();
     }
 
@@ -166,24 +166,6 @@ export class TableComponent implements DataTableParams, OnInit {
         }
     }
 
-    sort(sortBy: string, asc: boolean) {
-        this.sortBy = sortBy;
-        this.sortAsc = asc;
-    }
-
-    private _initDefaultValues() {
-        this.indexColumnVisible = this.indexColumn;
-        this.selectColumnVisible = this.selectColumn;
-        this.expandColumnVisible = this.expandableRows;
-    }
-
-    private _initDefaultClickEvents() {
-        this.headerClick.subscribe(tableEvent => this.sortColumn(tableEvent.column));
-        if (this.selectOnRowClick) {
-            this.rowClick.subscribe(tableEvent => tableEvent.row.selected = !tableEvent.row.selected);
-        }
-    }
-
     reloadItems() {
         this._reloading = true;
         setTimeout(() => {
@@ -191,23 +173,20 @@ export class TableComponent implements DataTableParams, OnInit {
         }, 0);
     }
 
-    private _onReloadFinished() {
-        this._updateDisplayParams();
-
-        this._selectAllCheckbox = false;
-        this._reloading = false;
+    sort(ordering: string, asc: boolean) {
+        this.ordering = ordering;
+        this.sortAsc = asc;
     }
 
     _updateDisplayParams() {
         this._displayParams = {
-            sortBy: this.sortBy,
+            ordering: this.ordering,
             sortAsc: this.sortAsc,
             offset: this.offset,
             limit: this.limit
         };
     }
 
-    // for avoiding cascading reloads if multiple params are set at once:
     _triggerReload() {
         if (this._scheduledReload) {
             clearTimeout(this._scheduledReload);
@@ -237,12 +216,32 @@ export class TableComponent implements DataTableParams, OnInit {
         this.cellClick.emit({ row, column, event });
     }
 
+    private _initDefaultValues() {
+        this.indexColumnVisible = this.indexColumn;
+        this.selectColumnVisible = this.selectColumn;
+        this.expandColumnVisible = this.expandableRows;
+    }
+
+    private _initDefaultClickEvents() {
+        this.headerClick.subscribe(tableEvent => this.sortColumn(tableEvent.column));
+        if (this.selectOnRowClick) {
+            this.rowClick.subscribe(tableEvent => tableEvent.row.selected = !tableEvent.row.selected);
+        }
+    }
+
+    private _onReloadFinished() {
+        this._updateDisplayParams();
+
+        this._selectAllCheckbox = false;
+        this._reloading = false;
+    }
+
     private _getRemoteParameters(): DataTableParams {
         const params = <DataTableParams>{};
 
-        if (this.sortBy) {
-            params.sortBy = this.sortBy;
-            params.sortAsc = this.sortAsc;
+        if (this.ordering) {
+            params.ordering = this.sortAsc ? '+' : '-';
+            params.ordering += this.ordering;
         }
         if (this.pagination) {
             params.offset = this.offset;
@@ -256,7 +255,7 @@ export class TableComponent implements DataTableParams, OnInit {
 
     private sortColumn(column: TableColumnDirective) {
         if (column.sortable) {
-            const ascending = this.sortBy === column.property ? !this.sortAsc : true;
+            const ascending = this.ordering === column.property ? !this.sortAsc : true;
             this.sort(column.property, ascending);
         }
     }
