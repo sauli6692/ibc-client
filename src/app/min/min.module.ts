@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SuiModule } from 'ng2-semantic-ui';
-
-import { MinComponent } from './min.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    SuiModule
+    CommonModule
   ],
-  declarations: [
-      MinComponent
-  ],
-  exports: [ MinComponent ]
+  declarations: []
 })
 export class MinModule { }

@@ -1,17 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SuiModule } from 'ng2-semantic-ui';
-
-import { AdmComponent } from './adm.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    SuiModule
+    CommonModule
   ],
-  declarations: [
-      AdmComponent
-  ],
-  exports: [ AdmComponent ]
+  declarations: []
 })
 export class AdmModule { }

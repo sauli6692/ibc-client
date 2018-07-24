@@ -1,28 +1,25 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { SuiModule } from 'ng2-semantic-ui';
 
-import { CoreModule } from './core/core.module';
-import { AdmModule } from './adm/adm.module';
-import { MinModule } from './min/min.module';
-import { PmmModule } from './pmm/pmm.module';
-import { RteModule } from './rte/rte.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './main/components/home/home.component';
+import { NotFoundComponent } from './main/components/not-found/not-found.component';
+
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    SuiModule,
-    CoreModule,
-    AdmModule,
-    MinModule,
-    PmmModule,
-    RteModule
-  ],
-  declarations: [
-    AppComponent
-  ],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        AuthModule,
+        AppRoutingModule,
+    ],
+    declarations: [
+        AppComponent,
+        NotFoundComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

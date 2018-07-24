@@ -1,0 +1,32 @@
+<tr	class="data-table-row"
+    [title]="getTooltip()"
+    [style.background-color]="dataTable.getRowColor(item, index, _this)"
+    [class.row-odd]="index % 2 === 0"
+    [class.row-even]="index % 2 === 1"
+    [class.selected]="selected"
+    [class.clickable]="dataTable.selectOnRowClick"
+    (dblclick)="dataTable.rowDoubleClicked(_this, $event)"
+    (click)="dataTable.rowClicked(_this, $event)"
+    >
+    <td [hide]="!dataTable.expandColumnVisible" (click)="expanded = !expanded; $event.stopPropagation()">
+        <i class="caret right icon" [hide]="expanded"></i>
+        <i class="caret down icon" [hide]="!expanded"></i>
+    </td>
+    <td [hide]="!dataTable.indexColumnVisible" class="index-column" [textContent]="displayIndex"></td>
+    <td [hide]="!dataTable.selectColumnVisible" class="select-column">
+        <div class="ui checkbox">
+            <input [name]="'select_' + index" type="checkbox" [(ngModel)]="selected">
+            <label></label>
+        </div>
+    </td>
+    <td *ngFor="let column of dataTable.columns" [hide]="!column.visible" [ngClass]="column.styleClassObject" class="data-column"
+        [style.background-color]="column.getCellColor(_this, index)">
+        <div *ngIf="!column.cellTemplate" [textContent]="item[column.property]"></div>
+        <div *ngIf="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate" [ngTemplateOutletContext]="{column: column, row: _this, item: item}"></div>
+    </td>
+</tr>
+<tr *ngIf="dataTable.expandableRows" [hide]="!expanded" class="row-expansion">
+    <td [attr.colspan]="dataTable.columnCount">
+        <div [ngTemplateOutlet]="dataTable.expandTemplate" [ngTemplateOutletContext]="{row: _this, item: item}"></div>
+    </td>
+</tr>

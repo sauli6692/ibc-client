@@ -1,0 +1,33 @@
+<div class="tile-grid">
+    <div class="ui stackable raised cards">
+        <ng-container *ngFor="let tile of tiles">
+            <a *ngIf="tile.routerLink" [routerLink]="tile.routerLink" class="card" [ngClass]="{ 'no-background': !tile.background }">
+                <div *ngIf="tile.background" class="image">
+                    <span class="image-helper"></span> <img [src]="tile.background">
+                </div>
+                <span class="label">
+                    <h2 class="ui header">{{tile.title}}</h2>
+                    <span *ngIf="tile.description" class="description extra">{{tile.description}}</span>
+                </span>
+            </a>
+            <a *ngIf="tile.externalLink" [href]="tile.externalLink" target="_blank" class="card" [ngClass]="{ 'no-background': !tile.background }">
+                <div *ngIf="tile.background" class="image">
+                    <span class="image-helper"></span> <img [src]="tile.background">
+                </div>
+                <span class="label">
+                    <h2 class="ui header">{{tile.title}}</h2>
+                    <span *ngIf="tile.description" class="description extra">{{tile.description}}</span>
+                </span>
+            </a>
+            <div *ngIf="!tile.routerLink && !tile.externalLink" class="card" [ngClass]="{ 'no-background': !tile.background }">
+                <div *ngIf="tile.background" class="image">
+                    <span class="image-helper"></span> <img [src]="tile.background">
+                </div>
+                <span class="label">
+                    <h2 class="ui header">{{tile.title}}</h2>
+                    <span *ngIf="tile.description" class="description extra">{{tile.description}}</span>
+                </span>
+            </div>
+        </ng-container>
+    </div>
+</div>

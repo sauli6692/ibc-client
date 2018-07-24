@@ -1,37 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-// import { ChatComponent } from './components/chat/chat.component';
-// import { AuthGuard } from './guards/auth.guard';
-// import { LoginComponent } from './components/login/login.component';
+import { RouterModule, Routes } from '@angular/router';
 
-/*
-  Our app's routes.
-  If you don't know what this means, check https://angular.io/docs/ts/latest/guide/router.html
- */
-const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
+import { NotFoundComponent } from './main/components/not-found/not-found.component';
+import { AuthGuard } from './auth/services';
+
+
+const appRoutes: Routes = [
+    {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'tkb'
-      // },
-      // {
-      //   path: 'chat',
-      //   component: ChatComponent,
-      //   canActivate: [AuthGuard]
-      // },
-      // {
-      //   path: 'login',
-      //   component: LoginComponent
-      }
-    ]
-  }
+        loadChildren: './main/main.module#MainModule',
+        canLoad: [AuthGuard]
+    },
+    { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot(
+            appRoutes,
+            {
+                enableTracing: false, // <-- true debugging purposes only
+            }
+        )
+    ],
+    exports: [
+        RouterModule
+    ],
+    providers: []
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

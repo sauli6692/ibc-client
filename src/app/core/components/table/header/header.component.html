@@ -1,0 +1,47 @@
+<div class="core-table-header">
+    <div class="ui text stackable menu">
+        <div class="item">
+            <h3 class="ui header">{{dataTable.headerTitle}}</h3>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input placeholder="{{dataTable.translations.search}}" #searchInput type="text" (keyup)="search(searchInput.value)">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+            <div class="item">
+                <a style="margin-left:auto;color: rgba(0,0,0,.6);" (click)="dataTable.reloadItems()"><i class="sync icon"></i></a>
+                <div class="ui dropdown" suiDropdown>
+                    <i class="columns icon"></i>
+                    <div class="menu" suiDropdownMenu>
+                        <div *ngIf="dataTable.expandableRows" class="item">
+                            <div class="ui toggle checkbox">
+                                <input name="expand_column" type="checkbox" [(ngModel)]="dataTable.expandColumnVisible">
+                                <label>{{dataTable.translations.expandColumn}}</label>
+                            </div>
+                        </div>
+                        <div *ngIf="dataTable.indexColumn" class="item">
+                            <div class="ui toggle checkbox">
+                                <input name="index_column" type="checkbox" [(ngModel)]="dataTable.indexColumnVisible">
+                                <label>{{dataTable.translations.indexColumn}}</label>
+                            </div>
+                        </div>
+                        <div *ngIf="dataTable.selectColumn" class="item">
+                            <div class="ui toggle checkbox">
+                                <input name="select_column" type="checkbox" [(ngModel)]="dataTable.selectColumnVisible">
+                                <label>{{dataTable.translations.selectColumn}}</label>
+                            </div>
+                        </div>
+                        <div *ngFor="let column of dataTable.columns; let index = index;" class="item">
+                            <div class="ui toggle checkbox">
+                                <input [name]="'colum_' + index" type="checkbox" [(ngModel)]="column.visible">
+                                <label>{{column.header}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<sui-sidebar-container class="ui bottom attached segment">
+  <sui-sidebar class="inverted vertical" #sidebar>
+    <div class="item">
+        <div class="header">
+            <a class="ui logo icon image" routerLink="/home">
+                <img src="assets/images/logo_ibc.png">
+            </a>
+            <a routerLink="/home"><b>{{title}}</b></a>
+        </div>
+        <div class="menu">
+            <a *ngFor="let item of routeInfo.globalMenu" class="item" [routerLink]="[item.slug]">{{item.label}}</a>
+        </div>
+    </div>
+  </sui-sidebar>
+  <sui-sidebar-sibling>
+    <div class="ui top fixed menu">
+        <a class="item" (click)="sidebar.toggle()">
+            <i class="sidebar icon"></i>
+        </a>
+        <div class="right menu">
+            <a class="item">
+                <i class="user outline icon"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ui main fluid container">
+      <router-outlet></router-outlet>
+    </div>
+  </sui-sidebar-sibling>
+</sui-sidebar-container>

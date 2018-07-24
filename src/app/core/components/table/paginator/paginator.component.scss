@@ -1,0 +1,22 @@
+.ui.secondary.menu {
+    .ui.right.pagination.menu {
+        margin-right: 5px;
+        .item {
+            margin: 0;
+        }
+        .item.input {
+            padding-left: 0;
+            padding-right: 0;
+            .ui.input {
+                width: 3.7em;
+                input[type=number] {
+                    text-align: center;
+                    -webkit-appearance: none;
+                    -moz-appearance: textfield!important;
+                    appearance: none;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

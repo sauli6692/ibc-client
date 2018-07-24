@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
-import '../assets/styles/styles.less';
-import '../assets/styles/semantic/semantic.min.css';
-
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styles: ['./app.component.less']
+    selector: 'ibc-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent { }
+export class AppComponent {
+    title = 'ibc';
+}
