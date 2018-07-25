@@ -30,14 +30,6 @@
         </thead>
         <tbody *ngFor="let item of items; let index=index" class="data-table-row-wrapper" coreTableRow #row [item]="item" [index]="index" (selectedChange)="onRowSelectChanged(row)">
         </tbody>
-        <tbody class="substitute-rows" *ngIf="pagination && substituteRows">
-            <tr *ngFor="let item of substituteItems, let index = index" [class.row-odd]="(index + items.length) % 2 === 0" [class.row-even]="(index + items.length) % 2 === 1">
-                <td [hide]="!expandColumnVisible"></td>
-                <td [hide]="!indexColumnVisible">&nbsp;</td>
-                <td [hide]="!selectColumnVisible"></td>
-                <td *ngFor="let column of columns" [hide]="!column.visible">&nbsp;</td>
-            </tr>
-        </tbody>
     </table>
     <div *ngIf="showReloading" class="ui inverted dimmer" [class.active]="reloading">
         <div class="ui loader"></div>

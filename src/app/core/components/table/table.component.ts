@@ -150,10 +150,6 @@ export class TableComponent implements DataTableParams, OnInit {
         return count;
     }
 
-    get substituteItems() {
-        return Array.from({ length: this.displayParams.limit - this.items.length });
-    }
-
     constructor(private utils: UtilitiesService) {}
 
     ngOnInit() {

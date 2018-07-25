@@ -21,6 +21,10 @@ export class TablePaginatorComponent {
     }
 
     set limit(value) {
+        if (this.dataTable.itemCount <= value) {
+            this.dataTable.offset = 0;
+        }
+
         this.dataTable.limit = value;
     }
 
@@ -62,7 +66,7 @@ export class TablePaginatorComponent {
         if (prevValid || nextValid) {
             this.page = pageInput.value;
         } else {
-          pageInput.value = this.page;
+            pageInput.value = this.page;
         }
     }
 }
