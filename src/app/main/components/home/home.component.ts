@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 import { CoreTile } from '../../../core/interfaces';
+import {
+    FieldBase,
+    TextField,
+    SelectField
+} from '../../../core/domain/fields';
 import { RouteInformation } from '../../../core/services';
 
 @Component({
@@ -12,6 +17,15 @@ import { RouteInformation } from '../../../core/services';
 })
 export class HomeComponent implements OnInit {
     tiles: CoreTile[];
+    fields: FieldBase<any>[] = [
+        new TextField('text_input', { required: true }),
+        new SelectField('select_input', {
+            options: [{
+                value: 'val',
+                label: 'Value'
+            }]
+        })
+    ];
 
     constructor(
         private routeInfo: RouteInformation

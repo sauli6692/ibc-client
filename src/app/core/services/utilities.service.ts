@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { MoveHandler, UpHandler } from '../interfaces';
+import { MoveHandler, UpHandler } from '../domain/event-handlers';
 
 @Injectable({
     providedIn: 'root'

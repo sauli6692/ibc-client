@@ -1,0 +1,12 @@
+<div [formGroup]="form">
+    <label [attr.for]="field.name">{{field.label}}</label>
+
+    <div [ngSwitch]="field.controlType">
+        <input *ngSwitchCase="'input'" [formControlName]="field.name" [id]="field.name" [type]="field.type" class="{{field.extraClass}}">
+        <select *ngSwitchCase="'select'" [id]="field.name" [formControlName]="field.name" class="{{field.extraClass}}">
+            <option *ngFor="let opt of field.options" [value]="opt.value">{{opt.label}}</option>
+        </select>
+    </div>
+
+    <div class="errorMessage" *ngIf="!isValid">{{field.label}} is required</div>
+</div>
