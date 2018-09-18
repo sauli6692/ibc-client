@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import * as _ from 'lodash';
+
 import { MoveHandler, UpHandler } from '../domain/event-handlers';
 
 @Injectable({
@@ -39,5 +41,10 @@ export class UtilitiesService {
 
         document.addEventListener('mousemove', mouseMoveHandler);
         document.addEventListener('mouseup', mouseUpHandler);
+    }
+
+    // Function to use on template
+    isArray(obj: any) {
+        return _.isArray(obj);
     }
 }

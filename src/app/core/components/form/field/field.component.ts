@@ -4,7 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { FieldBase } from '../../../domain/fields';
 
 @Component({
-    selector: 'core-field',
+    // tslint:disable-next-line
+    selector: '[coreField]',
     templateUrl: './field.component.html'
 })
 export class FieldComponent {

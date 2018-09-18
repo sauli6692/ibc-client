@@ -1,12 +1,93 @@
-<div [formGroup]="form">
-    <label [attr.for]="field.name">{{field.label}}</label>
-
-    <div [ngSwitch]="field.controlType">
-        <input *ngSwitchCase="'input'" [formControlName]="field.name" [id]="field.name" [type]="field.type" class="{{field.extraClass}}">
-        <select *ngSwitchCase="'select'" [id]="field.name" [formControlName]="field.name" class="{{field.extraClass}}">
-            <option *ngFor="let opt of field.options" [value]="opt.value">{{opt.label}}</option>
-        </select>
+<ng-container [formGroup]="form">
+    <label *ngIf="field.label" [attr.for]="field.name">{{field.label}}</label>
+    <div class="ui input" [ngClass]="{'disabled': field.disabled, 'left icon': field.controlType === 'datetime'}">
+        <ng-container [ngSwitch]="field.controlType">
+            <input *ngSwitchCase="'input'"
+                [id]="field.name + '_id'"
+                [name]="field.name"
+                [formControlName]="field.name"
+                [placeholder]="field.label"
+                [type]="field.type"
+                [attr.step]="field.step"
+                [attr.accept]="field.accept"
+                class="{{field.extraClass}}">
+            <ng-container *ngSwitchCase="'select'">
+                <sui-select *ngIf="!field.multiple"
+                    class="selection {{field.extraClass}}"
+                    labelField="label"
+                    [options]="field.options"
+                    [formControlName]="field.name"
+                    [isSearchable]="field.searchable"
+                    [isDisabled]="field.disabled"
+                    #select>
+                    <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+                    </sui-select-option>
+                </sui-select>
+                <sui-multi-select *ngIf="field.multiple"
+                    class="selection {{field.extraClass}}"
+                    labelField="label"
+                    [options]="field.options"
+                    [formControlName]="field.name"
+                    [isSearchable]="field.searchable"
+                    [isDisabled]="field.disabled"
+                    #multiSelect>
+                    <sui-select-option *ngFor="let option of multiSelect.filteredOptions" [value]="option">
+                    </sui-select-option>
+                </sui-multi-select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'">
+                <sui-checkbox *ngIf="!field.multiple"
+                    [id]="field.name + '_id'"
+                    [name]="field.name"
+                    [formControlName]="field.name"
+                    [isDisabled]="field.disabled"
+                    class="{{field.extraClass}}">{{field.text}}</sui-checkbox>
+                <div *ngIf="field.multiple" class="fields {{field.extraClass}}" [ngClass]="{grouped: field.grouped, inline: !field.grouped}">
+                    <div *ngFor="let option of field.options" class="field">
+                       <sui-checkbox
+                           [id]="option.name + '_id'"
+                           [name]="option.name"
+                           [isDisabled]="option.disabled"
+                           class="{{option.extraClass}}">{{option.text}}</sui-checkbox>
+                    </div>
+                 </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'radio'">
+                <sui-radio-button *ngIf="!field.multiple"
+                    [id]="field.name + '_id'"
+                    [name]="field.name"
+                    [formControlName]="field.name"
+                    [isDisabled]="field.disabled"
+                    class="{{field.extraClass}}">{{field.text}}</sui-radio-button>
+                <div *ngIf="field.multiple" class="fields {{field.extraClass}}" [ngClass]="{grouped: field.grouped, inline: !field.grouped}">
+                    <div *ngFor="let option of field.options" class="field">
+                       <sui-radio-button
+                           [id]="option.name + '_id'"
+                           [name]="option.name"
+                           [isDisabled]="option.disabled"
+                           class="{{option.extraClass}}">{{option.text}}</sui-radio-button>
+                    </div>
+                 </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'datetime'">
+                <i class="calendar icon"></i>
+                <input suiDatepicker
+                    [id]="field.name + '_id'"
+                    [name]="field.name"
+                    [formControlName]="field.name"
+                    pickerFirstDayOfWeek="0"
+                    [placeholder]="field.label"
+                    [pickerMode]="field.mode"
+                    [pickerMinDate]="field.min"
+                    [pickerMaxDate]="field.max"
+                    class="{{field.extraClass}}">
+            </ng-container>
+                <textarea *ngSwitchCase="'textarea'"
+                    [id]="field.name + '_id'"
+                    [placeholder]="field.label"
+                    [formControlName]="field.name"
+                    [name]="field.name"
+                    class="{{field.extraClass}}"></textarea>
+        </ng-container>
     </div>
-
-    <div class="errorMessage" *ngIf="!isValid">{{field.label}} is required</div>
-</div>
+</ng-container>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { UtilitiesService } from '../../services';
 import { FieldBase } from '../../domain/fields';
 import { FieldControlService } from '../../services';
 
@@ -10,16 +11,22 @@ import { FieldControlService } from '../../services';
 })
 export class FormComponent implements OnInit {
     @Input() fields: FieldBase<any>[] = [];
+    @Input() label: string;
     form: FormGroup;
     payLoad = '';
 
-    constructor(private qcs: FieldControlService) { }
+    constructor(
+        private fcs: FieldControlService,
+        private utils: UtilitiesService
+    ) { }
 
     ngOnInit() {
-        this.form = this.qcs.toFormGroup(this.fields);
+        this.form = this.fcs.toFormGroup(this.fields);
     }
 
     onSubmit() {
-        this.payLoad = JSON.stringify(this.form.value);
+        if (this.form.valid) {
+            this.payLoad = JSON.stringify(this.form.value);
+        }
     }
 }

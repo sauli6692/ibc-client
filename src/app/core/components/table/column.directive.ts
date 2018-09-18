@@ -1,4 +1,5 @@
 import { Directive, Input, ContentChild, OnInit } from '@angular/core';
+
 import { TableRowComponent } from './row/row.component';
 import { CellCallback } from '../../interfaces';
 
