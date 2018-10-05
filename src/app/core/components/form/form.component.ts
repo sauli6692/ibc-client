@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    OnInit
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { UtilitiesService } from '../../services';
@@ -8,12 +14,20 @@ import { FieldControlService } from '../../services';
 @Component({
     selector: 'core-form',
     templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
     @Input() fields: FieldBase<any>[] = [];
     @Input() label: string;
+    @Input() cancelButton = false;
+    @Input() errorHeader = '¡Error!';
+    @Input() errorMessage = 'Campos inválidos';
+    @Output() cancel = new EventEmitter<any>();
+    @Output() submit = new EventEmitter<any>();
     form: FormGroup;
-    payLoad = '';
+    clicked = false;
+    submitLabel = 'Guardar';
+    cancelLabel = 'Cancelar';
 
     constructor(
         private fcs: FieldControlService,
@@ -25,8 +39,17 @@ export class FormComponent implements OnInit {
     }
 
     onSubmit() {
+        this.clicked = true;
         if (this.form.valid) {
-            this.payLoad = JSON.stringify(this.form.value);
+            this.submit.emit(this.form.value);
         }
+    }
+
+    onCancel() {
+        this.cancel.emit();
+    }
+
+    hasError(field) {
+        return this.clicked && this.form.get(field.name).invalid;
     }
 }

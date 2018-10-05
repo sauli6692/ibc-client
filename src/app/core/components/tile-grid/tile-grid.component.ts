@@ -1,6 +1,5 @@
 import {
     Component,
-    OnInit,
     Input
 } from '@angular/core';
 
@@ -11,11 +10,6 @@ import { CoreTile } from '../../interfaces';
     templateUrl: './tile-grid.component.html',
     styleUrls: ['./tile-grid.component.scss']
 })
-export class TileGridComponent implements OnInit {
+export class TileGridComponent {
     @Input() tiles: Array<CoreTile>;
-
-    constructor() { }
-
-    ngOnInit() {
-    }
 }

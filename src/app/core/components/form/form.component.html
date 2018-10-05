@@ -4,18 +4,17 @@
         <div *ngFor="let field of fields; let i = index;" class="fields">
             <ng-container *ngIf="utils.isArray(field)">
                 <ng-container *ngFor="let _field of field" class="field">
-                    <div class="{{_field.wide || 'sixteen'}} wide field" [ngClass]="{required: !!_field.required}" coreField [field]="_field" [form]="form"></div>
+                    <div class="{{_field.wide || 'sixteen'}} wide field" [ngClass]="{required: !!_field.required, error: hasError(_field)}" coreField [field]="_field" [form]="form"></div>
                 </ng-container>
             </ng-container>
-            <div *ngIf="!utils.isArray(field)" class="sixteen wide field" [ngClass]="{required: !!field.required}" coreField [field]="field" [form]="form"></div>
+            <div *ngIf="!utils.isArray(field)" class="sixteen wide field" [ngClass]="{required: !!field.required, error: hasError(field)}" coreField [field]="field" [form]="form"></div>
         </div>
-        <button class="ui button" type="submit" [disabled]="!form.valid">Save</button>
+        <sui-message *ngIf="clicked && !form.valid" class="error" [isDismissable]="false">
+            <div class="header">{{errorHeader}}</div>
+            <p>{{errorMessage}}</p>
+        </sui-message>
+        <button class="ui primary right floated button" type="submit">{{submitLabel}}</button>
+        <button *ngIf="cancelButton" class="ui right floated button" type="button" (click)="onCancel()">{{cancelLabel}}</button>
+        <div class="clearfix"></div>
     </form>
-    <div *ngIf="payLoad" class="form-row">
-        <strong>Saved the following values</strong><br>{{payLoad}}
-    </div>
-    <div *ngIf="!form.valid" class="ui error message">
-        <div class="header">Action Forbidden</div>
-        <p>You can only sign up for an account once with a given e-mail address.</p>
-    </div>
 </div>

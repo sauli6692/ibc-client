@@ -84,12 +84,12 @@
                     [pickerMaxDate]="field.max"
                     class="{{field.extraClass}}">
             </ng-container>
-                <textarea *ngSwitchCase="'textarea'"
-                    [id]="field.name + '_id'"
-                    [placeholder]="field.label"
-                    [formControlName]="field.name"
-                    [name]="field.name"
-                    class="{{field.extraClass}}"></textarea>
+            <textarea *ngSwitchCase="'textarea'"
+                [id]="field.name + '_id'"
+                [placeholder]="field.label"
+                [formControlName]="field.name"
+                [name]="field.name"
+                class="{{field.extraClass}}"></textarea>
         </ng-container>
     </div>
 </ng-container>
