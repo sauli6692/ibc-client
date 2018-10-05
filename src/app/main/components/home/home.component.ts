@@ -38,17 +38,15 @@ export class HomeComponent implements OnInit {
         [new TextField('text_input', {
             label: 'Text field',
             required: true,
-            disabled: true,
-            wide: 'eight'
-        }),
-        new SelectField('select_input', {
+            disabled: true
+        })],
+        [new SelectField('select_input', {
             label: 'Select',
             options: [{
                 value: 'val',
                 label: 'Value'
             }],
-            disabled: true,
-            wide: 'four'
+            disabled: true
         }),
         new SelectMultipleField('select_input', {
             label: 'Select',
@@ -58,8 +56,7 @@ export class HomeComponent implements OnInit {
             }, {
                 value: 'val2',
                 label: 'Value 2'
-            }],
-            wide: 'four'
+            }]
         })],
         [new IntegerField('integer_input', {
             label: 'Integer',

@@ -19,6 +19,7 @@
                     [formControlName]="field.name"
                     [isSearchable]="field.searchable"
                     [isDisabled]="field.disabled"
+                    style="width: 100%;"
                     #select>
                     <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
                     </sui-select-option>
@@ -30,6 +31,7 @@
                     [formControlName]="field.name"
                     [isSearchable]="field.searchable"
                     [isDisabled]="field.disabled"
+                    style="width: 100%;"
                     #multiSelect>
                     <sui-select-option *ngFor="let option of multiSelect.filteredOptions" [value]="option">
                     </sui-select-option>
