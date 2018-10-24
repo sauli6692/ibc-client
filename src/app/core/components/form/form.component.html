@@ -3,7 +3,7 @@
     <form class="ui form" (ngSubmit)="onSubmit()" [formGroup]="form">
         <div *ngFor="let field of fields; let i = index;" class="fields">
             <ng-container *ngIf="utils.isArray(field)">
-                <ng-container *ngFor="let _field of field" class="field">
+                <ng-container *ngFor="let _field of field">
                     <div class="{{_field.wide || 'sixteen'}} wide field" [ngClass]="{required: !!_field.required, error: hasError(_field)}" coreField [field]="_field" [form]="form"></div>
                 </ng-container>
             </ng-container>

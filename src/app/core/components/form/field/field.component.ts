@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { FieldBase } from '../../../domain/fields';
+import { BaseField } from '../../../domain/fields';
 
 @Component({
     // tslint:disable-next-line
@@ -9,7 +9,7 @@ import { FieldBase } from '../../../domain/fields';
     templateUrl: './field.component.html'
 })
 export class FieldComponent {
-    @Input() field: FieldBase<any>;
+    @Input() field: BaseField<any>;
     @Input() form: FormGroup;
 
     get isValid() {

@@ -3,13 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import * as _ from 'lodash';
 
-import { FieldBase } from '../domain/fields';
+import { BaseField } from '../domain/fields';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FieldControlService {
-    toFormGroup(fields: Array<FieldBase<any> | FieldBase<any>[]>) {
+    toFormGroup(fields: Array<BaseField<any> | BaseField<any>[]>) {
         const group = {};
 
         _.forEach(fields, field => {

@@ -8,7 +8,7 @@ import {
 import { FormGroup } from '@angular/forms';
 
 import { UtilitiesService } from '../../services';
-import { FieldBase } from '../../domain/fields';
+import { BaseField } from '../../domain/fields';
 import { FieldControlService } from '../../services';
 
 @Component({
@@ -17,7 +17,7 @@ import { FieldControlService } from '../../services';
     styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
-    @Input() fields: FieldBase<any>[] = [];
+    @Input() fields: BaseField<any>[] = [];
     @Input() label: string;
     @Input() cancelButton = false;
     @Input() errorHeader = '¡Error!';
