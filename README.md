@@ -4,3 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This has multiple examples of how to use Angular components connected to any API.
 
+
+# Supporters
+
+[![Browserstack](Browserstack-logo@2x.png)](https://www.browserstack.com)
