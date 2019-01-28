@@ -15,6 +15,9 @@ import { TableUseExampleComponent } from './components/table/use-example/use-exa
 
 import { FieldComponent } from './components/form/field/field.component';
 import { FormComponent } from './components/form/form.component';
+import { FormUseExampleComponent } from './components/form/use-example/use-example.component';
+
+import { SaveModalComponent } from './components/save-modal/save-modal.component';
 
 import { HideDirective } from './directives/hide.directive';
 
@@ -33,12 +36,14 @@ import { PixelConverterPipe } from './pipes/px.pipe';
         TileGridComponent,
         FieldComponent,
         FormComponent,
+        FormUseExampleComponent,
         TableComponent,
         TableColumnDirective,
         TableRowComponent,
         TableHeaderComponent,
         TablePaginatorComponent,
         TableUseExampleComponent,
+        SaveModalComponent,
         // Directives
         HideDirective,
         // Pipes
@@ -49,14 +54,20 @@ import { PixelConverterPipe } from './pipes/px.pipe';
         TileGridComponent,
         FieldComponent,
         FormComponent,
+        FormUseExampleComponent,
         TableComponent,
         TableUseExampleComponent,
+        SaveModalComponent,
         // Directives
         TableColumnDirective,
         HideDirective,
         // Pipes
         MinPipe,
         PixelConverterPipe,
+    ],
+    // More info: https://angular.io/guide/entry-components
+    entryComponents: [
+        SaveModalComponent
     ]
 })
 export class CoreModule { }

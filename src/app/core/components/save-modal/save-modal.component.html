@@ -1,0 +1,6 @@
+<div class="header">{{ modal.context.title }}</div>
+<div class="content">
+    <core-form label="Mi Form" [fields]="fields" [cancelButton]="true" (submit)="modal.approve(undefined)" (cancel)="modal.deny(undefined)"></core-form>
+</div>
+<div class="actions">
+</div>

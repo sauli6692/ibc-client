@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SuiModalService } from 'ng2-semantic-ui';
 
-import * as _ from 'lodash';
-
-import { CoreTile } from '../../../core/interfaces';
 import {
+    BaseField,
     TextField,
     SelectField,
     IntegerField,
@@ -24,40 +22,25 @@ import {
     RadioMultipleField,
     FileField,
     ImageField
-} from '../../../core/domain/fields';
-import { BaseModel } from '../../../core/domain/models';
-import { SaveModal } from '../../../core/domain/modals';
-import { RouteInformation } from '../../../core/services';
+} from '../../../../core/domain/fields';
+import { BaseModel } from '../../../../core/domain/models';
 
 @Component({
-    selector: 'main-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    selector: 'core-form-use-example',
+    templateUrl: './use-example.component.html',
+    styleUrls: ['./use-example.component.scss']
 })
-export class HomeComponent implements OnInit {
-    tiles: CoreTile[];
+export class FormUseExampleComponent implements OnInit {
+    fields: Array<BaseField<any> | BaseField<any>[]>;
 
     constructor(
-        private routeInfo: RouteInformation,
         private modalService: SuiModalService
     ) { }
 
     ngOnInit() {
-        this.tiles = _.reduce(this.routeInfo.currentMenu, (prev, item) => {
-            prev.push({
-                title: item.label,
-                description: item.label,
-                routerLink: [item.slug]
-            });
-            return prev;
-        }, []);
-    }
-
-    onClick() {
-        this.modalService
-            .open(new SaveModal('Form Model', TestModel))
-            .onApprove(() => console.log('User has accepted.'))
-            .onDeny(() => console.log('User has denied.'));
+        /** IMPORTANT: Never call directly instance.field in template */
+        const instance = new TestModel();
+        this.fields = instance.fields;
     }
 }
 
@@ -102,9 +85,35 @@ class TestModel extends BaseModel {
         row: 1
     });
 
+    numberField = new NumberField({
+        name: 'integer_input',
+        label: 'Number',
+        row: 1
+    });
+
+    passwordField = new PasswordField({
+        name: 'pass',
+        label: 'Password',
+        disabled: true,
+        row: 1
+    });
+
     emailField = new EmailField({
         name: 'email',
         label: 'Email'
+    });
+
+    checkboxField = new CheckboxField({
+        name: 'checkbox',
+        label: 'Checbox',
+        text: 'First Option',
+        disabled: true
+    });
+
+    radioField = new RadioField({
+        name: 'radio',
+        label: 'Radio',
+        text: 'First Option'
     });
 
     dateTimeField = new DateTimeField({
@@ -112,6 +121,41 @@ class TestModel extends BaseModel {
         label: 'DateTime',
         min: '2018-09-01',
         row: 2
+    });
+
+    timeField = new TimeField({
+        name: 'time', // Min and Max doesn't work
+        label: 'Time',
+        row: 2
+    });
+
+    dateField = new DateField({
+        name: 'date',
+        label: 'Date',
+        min: '2018-09-01',
+        max: '2018-09-29',
+        row: 2
+    });
+
+    monthField = new MonthField({
+        name: 'month',
+        label: 'Month',
+        min: '2018-09-01',
+        disabled: true,
+        row: 2
+    });
+
+    yearField = new YearField({
+        name: 'year',
+        label: 'Year',
+        min: '2010',
+        row: 2
+    });
+
+    fileField = new FileField({
+        name: 'file',
+        label: 'File',
+        accept: '.txt'
     });
 
     imageField = new ImageField({
@@ -141,6 +185,26 @@ class TestModel extends BaseModel {
             disabled: true
         }, {
             name: 'check4',
+            text: '4 Option',
+        }]
+    });
+
+    radioMultipleField = new RadioMultipleField({
+        name: 'radiogroup',
+        label: 'Radio Group',
+        options: [{
+            name: 'radio1',
+            text: '1 Option',
+            disabled: true
+        }, {
+            name: 'radio2',
+            text: '2 Option',
+        }, {
+            name: 'radio3',
+            text: '3 Option',
+            disabled: true
+        }, {
+            name: 'radio4',
             text: '4 Option',
         }]
     });

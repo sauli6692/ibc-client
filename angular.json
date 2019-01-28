@@ -28,7 +28,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/styles/semanticui/calendar.min.css"
+              "src/assets/styles/calendar.min.css",
+              "src/assets/styles/semantic-ui-css/semantic.min.css"
             ],
             "scripts": []
           },
