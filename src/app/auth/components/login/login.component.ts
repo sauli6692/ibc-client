@@ -15,11 +15,13 @@ export class LoginComponent {
     loginLabel = 'Ingresar';
     passwordLabel = 'Contraseña';
     userLabel = 'Usuario';
+    user = '';
+    password = ''
 
     constructor(private authService: AuthService, private router: Router) { }
 
     onSubmit() {
-        this.authService.login('sauli6692', 'qwerty123')
+        this.authService.login(this.user, this.password)
             .subscribe(isLogged => {
                 if (isLogged) {
                     this.router.navigate([this.authService.next || '/']);
