@@ -11,13 +11,13 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input name="user" [placeholder]="userLabel" type="text">
+            <input name="user" [(ngModel)]="user" [placeholder]="userLabel" type="text">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input name="password" [placeholder]="passwordLabel" type="password">
+            <input name="password" [(ngModel)]="password" [placeholder]="passwordLabel" type="password">
           </div>
         </div>
         <button type="submit" class="ui fluid large teal submit button">{{loginLabel}}</button>
