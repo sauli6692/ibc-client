@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, } from '@angular/core';
 import {
     Router
 } from '@angular/router';
-
+import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { AuthService } from '../../services';
 
 @Component({
@@ -15,13 +16,24 @@ export class LoginComponent {
     loginLabel = 'Ingresar';
     passwordLabel = 'Contraseña';
     userLabel = 'Usuario';
-    user = '';
-    password = ''
+
+    loginForm = new FormGroup({
+        user: new FormControl('',[Validators.required]),
+        password: new FormControl('',[Validators.required]),
+    });
+
+    getUser(){
+        return this.loginForm.get('user');
+    }
+
+    getPassword(){
+        return this.loginForm.get('password');
+    }
 
     constructor(private authService: AuthService, private router: Router) { }
 
     onSubmit() {
-        this.authService.login(this.user, this.password)
+        this.authService.login(this.getUser(),this.getPassword())
             .subscribe(isLogged => {
                 if (isLogged) {
                     this.router.navigate([this.authService.next || '/']);
