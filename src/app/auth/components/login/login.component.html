@@ -11,13 +11,13 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input [placeholder]="userLabel" type="text">
+            <input formControlName="user" [placeholder]="userLabel" type="text">
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input [placeholder]="passwordLabel" type="password">
+            <input formControlName="password" [placeholder]="passwordLabel" type="password">
           </div>
         </div>
         <button type="submit" [disabled]="!loginForm.valid" class="ui fluid large teal submit button">{{loginLabel}}</button>

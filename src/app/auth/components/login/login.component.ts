@@ -23,11 +23,11 @@ export class LoginComponent {
     });
 
     getUser(){
-        return this.loginForm.get('user');
+        return this.loginForm.get('user').value;
     }
 
     getPassword(){
-        return this.loginForm.get('password');
+        return this.loginForm.get('password').value;
     }
 
     constructor(private authService: AuthService, private router: Router) { }
