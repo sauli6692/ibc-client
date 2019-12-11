@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from '../../../auth/services/auth.service';
 import * as _ from 'lodash';
-
+import { Router } from '@angular/router';
 import { RouteInformation } from '../../../core/services';
 
 
@@ -13,6 +13,12 @@ import { RouteInformation } from '../../../core/services';
 export class MainComponent {
     title = 'Iglesia Bautista El Calvario';
     constructor(
-        private routeInfo: RouteInformation
+        private routeInfo: RouteInformation,
+        private authService: AuthService,
+        private router: Router
     ) { }
+
+    logout(){
+        this.authService.logout();
+    }
 }

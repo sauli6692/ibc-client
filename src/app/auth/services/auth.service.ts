@@ -34,6 +34,7 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem('token');
         this.activeUser = null;
+        location.reload();
     }
 
     isAuthenticated(): boolean {
